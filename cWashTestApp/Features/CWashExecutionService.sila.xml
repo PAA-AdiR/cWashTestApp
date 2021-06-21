@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Feature SiLA2Version="1.0" FeatureVersion="1.0" MaturityLevel="Normative" Originator="cytena.cwash" Category="features"
+         xmlns="http://www.sila-standard.org"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sila-standard.org https://gitlab.com/SiLA2/sila_base/raw/master/schema/FeatureDefinition.xsd">
+  <Identifier>CWashExecutionService</Identifier>
+  <DisplayName>CWash Execution Service</DisplayName>
+  <Description>
+    This service allows SiLA clients to execute single commands, or protocols, on the CWash instrument.
+  </Description>
+  <Command>
+    <Identifier>ExecuteCommand</Identifier>
+    <DisplayName>Execute Command</DisplayName>
+    <Description>
+      Execute a single CWash command.
+    </Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>Command</Identifier>
+      <DisplayName>Command</DisplayName>
+      <Description>
+        The CWash instrument command object, containing the name of the command and list of parameters.
+        The command should be a binary-encoded (UTF-8 bytes) JSON object with the following structure:
+        {
+          "name": "command_name",
+          "parameters": ["param1", "param2"]
+        }
+        Most modern programming languages support encoding of a JSON string into UTF-8 bytes object.
+      </Description>
+      <DataType>
+        <Basic>Binary</Basic>
+      </DataType>
+    </Parameter>
+    <Response>
+      <Identifier>CommandResponse</Identifier>
+      <DisplayName>Command Response</DisplayName>
+      <Description>
+        An object that contains the executed command name, response from the firmware and start and end time of the execution.
+      </Description>
+      <DataType>
+         <DataTypeIdentifier>CommandResponse</DataTypeIdentifier>
+      </DataType>
+    </Response>
+    <DefinedExecutionErrors>
+      <Identifier>CommandExecutionError</Identifier>
+      <Identifier>InstrumentBusy</Identifier>
+    </DefinedExecutionErrors>
+  </Command>
+
+  <Command>
+    <Identifier>ExecuteProtocol</Identifier>
+    <DisplayName>Execute Protocol</DisplayName>
+    <Description>
+      Execute a CWash protocol, with all of its commands.
+    </Description>
+    <Observable>Yes</Observable>
+    <Parameter>
+      <Identifier>Protocol</Identifier>
+      <DisplayName>Protocol</DisplayName>
+      <Description>
+        The CWash instrument protocol object, containing the protocol metadata, and a list of commands.
+        The protocol should be a binary-encoded (UTF-8 bytes) JSON object with the following structure:
+        {
+          "name": "protocol_name",
+          "description": "protocol_description",
+          "plateFormat": "Well_96",
+          "author": "protocol_author",
+          "commands": [
+            { "name": "command_1", "parameters": [] },
+            { "name": "command_2", "parameters": ["param1", "param2"] },
+            { "name": "command_3", "parameters": [] }
+          ]
+        }
+        The "plateFormat" should have one of the following 3 values: "Well_96", "Well_384" or "Well_1536".
+        Most modern programming languages support encoding of a JSON string into UTF-8 bytes object.
+      </Description>
+       <DataType>
+        <Basic>Binary</Basic>
+      </DataType>
+    </Parameter>
+    <DefinedExecutionErrors>
+      <Identifier>CommandExecutionError</Identifier>
+      <Identifier>InstrumentBusy</Identifier>
+    </DefinedExecutionErrors>
+  </Command>
+
+  <DataTypeDefinition>
+    <Identifier>CommandResponse</Identifier>
+    <DisplayName>Command Response</DisplayName>
+    <Description>
+      An object that contains the executed command name, response from the firmware and start and end time of the execution.
+    </Description>
+    <DataType>
+      <Structure>
+        <Element>
+          <Identifier>CommandName</Identifier>
+          <DisplayName>Command Name</DisplayName>
+          <Description>
+            Name of the executed command.
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+         <Element>
+          <Identifier>FirmwareResponse</Identifier>
+          <DisplayName>Firmware Response</DisplayName>
+          <Description>
+            The response from the firmware.
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+        <Element>
+          <Identifier>ExecutionStartedAt</Identifier>
+          <DisplayName>Execution Started At</DisplayName>
+          <Description>
+            Time at which the command execution started on the CWash instrument.
+          </Description>
+          <DataType>
+            <Basic>Timestamp</Basic>
+          </DataType>
+        </Element>
+        <Element>
+          <Identifier>ExecutionFinishedAt</Identifier>
+          <DisplayName>Execution Finished At</DisplayName>
+          <Description>
+            Time at which the command execution finished on the CWash instrument.
+          </Description>
+          <DataType>
+            <Basic>Timestamp</Basic>
+          </DataType>
+        </Element>
+      </Structure>
+    </DataType>
+  </DataTypeDefinition>
+
+  <DefinedExecutionError>
+    <Identifier>CommandExecutionError</Identifier>
+    <DisplayName>Command Execution Error</DisplayName>
+    <Description>
+      Command execution has failed.
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>InstrumentBusy</Identifier>
+    <DisplayName>Instrument Busy</DisplayName>
+    <Description>
+      CWash instrument is busy serving another SiLA client (e.g. performing another execution task).
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>CommandValidationError</Identifier>
+    <DisplayName>Command Validation Error</DisplayName>
+    <Description>
+      Provided command is invalid.
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>ProtocolValidationError</Identifier>
+    <DisplayName>Protocol Validation Error</DisplayName>
+    <Description>
+      Provided protocol is invalid.
+    </Description>
+  </DefinedExecutionError>
+</Feature>

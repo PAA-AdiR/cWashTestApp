@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\adi_rai\\source\\repos\\cWashTestApp\\cWashTestApp\\cWashTestApp.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\adi_rai\\source\\repos\\cWashTestApp\\cWashTestApp\\cWashTestApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\adi_rai\\source\\repos\\cWashTestApp\\cWashTestApp\\cWashTestApp.csproj",
+        "projectName": "cWashTestApp",
+        "projectPath": "C:\\Users\\adi_rai\\source\\repos\\cWashTestApp\\cWashTestApp\\cWashTestApp.csproj",
+        "packagesPath": "C:\\Users\\adi_rai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\adi_rai\\source\\repos\\cWashTestApp\\cWashTestApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\adi_rai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nexus.unitelabs.ch/repository/nuget-sila-development": {}
+        },
+        "frameworks": {
+          "net472": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "dependencies": {
+            "Sila2": {
+              "target": "Package",
+              "version": "[0.4.0, )"
+            },
+            "Sila2.Tools": {
+              "target": "Package",
+              "version": "[0.4.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

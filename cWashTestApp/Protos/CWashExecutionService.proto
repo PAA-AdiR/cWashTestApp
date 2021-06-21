@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "SiLAFramework.proto";
+
+package sila2.cytena.cwash.features.cwashexecutionservice.v1;
+
+service CWashExecutionService {
+    rpc ExecuteCommand(sila2.cytena.cwash.features.cwashexecutionservice.v1.ExecuteCommand_Parameters) returns (sila2.cytena.cwash.features.cwashexecutionservice.v1.ExecuteCommand_Responses) {}
+    rpc ExecuteProtocol(sila2.cytena.cwash.features.cwashexecutionservice.v1.ExecuteProtocol_Parameters) returns (sila2.org.silastandard.CommandConfirmation) {}
+    rpc ExecuteProtocol_Info(sila2.org.silastandard.CommandExecutionUUID) returns (stream sila2.org.silastandard.ExecutionInfo) {}
+    rpc ExecuteProtocol_Result(sila2.org.silastandard.CommandExecutionUUID) returns (sila2.cytena.cwash.features.cwashexecutionservice.v1.ExecuteProtocol_Responses) {}
+}
+
+message DataType_CommandResponse {
+    message CommandResponse_Struct {
+        sila2.org.silastandard.String CommandName = 1;
+        sila2.org.silastandard.String FirmwareResponse = 2;
+        sila2.org.silastandard.Timestamp ExecutionStartedAt = 3;
+        sila2.org.silastandard.Timestamp ExecutionFinishedAt = 4;
+    }
+    sila2.cytena.cwash.features.cwashexecutionservice.v1.DataType_CommandResponse.CommandResponse_Struct CommandResponse = 1;
+}
+
+message ExecuteCommand_Parameters {
+    sila2.org.silastandard.Binary Command = 1;
+}
+
+message ExecuteCommand_Responses {
+    sila2.cytena.cwash.features.cwashexecutionservice.v1.DataType_CommandResponse CommandResponse = 1;
+}
+
+message ExecuteProtocol_Parameters {
+    sila2.org.silastandard.Binary Protocol = 1;
+}
+
+message ExecuteProtocol_Responses {
+}
+

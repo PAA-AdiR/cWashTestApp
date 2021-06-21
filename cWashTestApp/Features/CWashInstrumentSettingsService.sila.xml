@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Feature SiLA2Version="1.0" FeatureVersion="1.0" MaturityLevel="Normative" Originator="cytena.cwash" Category="features"
+         xmlns="http://www.sila-standard.org"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.sila-standard.org https://gitlab.com/SiLA2/sila_base/raw/master/schema/FeatureDefinition.xsd">
+  <Identifier>CWashInstrumentSettingsService</Identifier>
+  <DisplayName>CWash Instrument Settings Service</DisplayName>
+  <Description>
+    This service allows SiLA clients to query basic CWash instrument information, and update its settings.
+  </Description>
+
+  <Command>
+    <Identifier>GetInstrumentInformation</Identifier>
+    <DisplayName>Get Instrument Information</DisplayName>
+    <Description>
+      Get basic information about the CWash instrument.
+    </Description>
+    <Observable>No</Observable>
+    <Response>
+      <Identifier>InstrumentInformation</Identifier>
+      <DisplayName>Instrument Information</DisplayName>
+      <Description>
+        Instrument information object that contains the instrument model, serial number and firmware version.
+      </Description>
+      <DataType>
+         <DataTypeIdentifier>InstrumentInformation</DataTypeIdentifier>
+      </DataType>
+    </Response>
+    <DefinedExecutionErrors>
+      <Identifier>GetInstrumentInformationError</Identifier>
+    </DefinedExecutionErrors>
+  </Command>
+
+  <Command>
+    <Identifier>GetEthernetConfiguration</Identifier>
+    <DisplayName>Get Ethernet Configuration</DisplayName>
+    <Description>
+      Get the CWash instrument Ethernet configuration. This is the configuration for the RJ45 (Ethernet) interface on the CWash instrument.
+    </Description>
+    <Observable>No</Observable>
+    <Response>
+      <Identifier>EthernetConfiguration</Identifier>
+      <DisplayName>Ethernet Configuration</DisplayName>
+      <Description>
+        Ethernet configuration settings object that contains the connection type, IP address, subnet mask and default gateway.
+        The IP address, subnet mask and default gateway are only relevant if the connection type is 'STATIC'.
+      </Description>
+      <DataType>
+         <DataTypeIdentifier>EthernetConfiguration</DataTypeIdentifier>
+      </DataType>
+    </Response>
+    <DefinedExecutionErrors>
+      <Identifier>GetEthernetConfigurationError</Identifier>
+    </DefinedExecutionErrors>
+  </Command>
+
+  <Command>
+    <Identifier>SetEthernetConfiguration</Identifier>
+    <DisplayName>Set Ethernet Configuration</DisplayName>
+    <Description>
+      Set the CWash instrument Ethernet configuration. This is the configuration for the RJ45 (Ethernet) interface on the CWash instrument.
+    </Description>
+    <Observable>No</Observable>
+    <Parameter>
+      <Identifier>EthernetConfiguration</Identifier>
+      <DisplayName>Ethernet Configuration</DisplayName>
+      <Description>
+        Ethernet configuration settings object that contains the connection type, IP address, subnet mask and default gateway.
+        The IP address, subnet mask and default gateway are only relevant if the connection type is 'STATIC'.
+      </Description>
+      <DataType>
+        <DataTypeIdentifier>EthernetConfiguration</DataTypeIdentifier>
+      </DataType>
+    </Parameter>
+    <DefinedExecutionErrors>
+      <Identifier>SetEthernetConfigurationError</Identifier>
+      <Identifier>InstrumentBusy</Identifier>
+    </DefinedExecutionErrors>
+  </Command>
+
+  <DataTypeDefinition>
+    <Identifier>InstrumentInformation</Identifier>
+    <DisplayName>Instrument Information</DisplayName>
+    <Description>
+      Instrument information object that contains the instrument model, serial number and firmware version.
+    </Description>
+    <DataType>
+      <Structure>
+        <Element>
+          <Identifier>Model</Identifier>
+          <DisplayName>Model</DisplayName>
+          <Description>
+            The CWash instrument model.
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+          <Element>
+          <Identifier>SerialNumber</Identifier>
+          <DisplayName>Serial Number</DisplayName>
+          <Description>
+            The CWash instrument serial number.
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+        <Element>
+          <Identifier>FirmwareVersion</Identifier>
+          <DisplayName>Firmware Version</DisplayName>
+          <Description>
+            The CWash instrument firmware version.
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+      </Structure>
+    </DataType>
+  </DataTypeDefinition>
+
+  <DataTypeDefinition>
+    <Identifier>EthernetConfiguration</Identifier>
+    <DisplayName>Ethernet configuration</DisplayName>
+    <Description>
+      Ethernet configuration settings object that contains the connection type, IP address, subnet mask and default gateway.
+      The IP address, subnet mask and default gateway are only relevant if the connection type is 'STATIC'.
+    </Description>
+    <DataType>
+      <Structure>
+        <Element>
+          <Identifier>Type</Identifier>
+          <DisplayName>Type</DisplayName>
+          <Description>
+            IP Connection Type (either 'STATIC' or 'DHCP').
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+          <Element>
+          <Identifier>IpAddress</Identifier>
+          <DisplayName>IP Address</DisplayName>
+          <Description>
+            The CWash instrument Ethernet IP Address. Only relevant if 'STATIC' connection type.
+            Must be a valid IP Address (A.B.C.D).
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+        <Element>
+          <Identifier>SubnetMask</Identifier>
+          <DisplayName>Subnet Mask</DisplayName>
+          <Description>
+            The CWash instrument Ethernet subnet mask. Only relevant if 'STATIC' connection type.
+            Must be a valid subnet mask (A.B.C.D).
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+        <Element>
+          <Identifier>DefaultGateway</Identifier>
+          <DisplayName>Default Gateway</DisplayName>
+          <Description>
+            The CWash instrument Ethernet default gateway. Only relevant if 'STATIC' connection type.
+            Must be a valid IP Address of the default gateway (A.B.C.D).
+          </Description>
+          <DataType>
+            <Basic>String</Basic>
+          </DataType>
+        </Element>
+      </Structure>
+    </DataType>
+  </DataTypeDefinition>
+
+   <DefinedExecutionError>
+    <Identifier>GetInstrumentInformationError</Identifier>
+    <DisplayName>Get Instrument Information Error</DisplayName>
+    <Description>
+      Getting instrument information has failed.
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>GetEthernetConfigurationError</Identifier>
+    <DisplayName>Get Ethernet Configuration Error</DisplayName>
+    <Description>
+      Getting instrument ethernet configuration settings has failed.
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>SetEthernetConfigurationError</Identifier>
+    <DisplayName>Set Ethernet Configuration Error</DisplayName>
+    <Description>
+      Setting instrument ethernet configuration settings has failed.
+    </Description>
+  </DefinedExecutionError>
+
+  <DefinedExecutionError>
+    <Identifier>InstrumentBusy</Identifier>
+    <DisplayName>Instrument Busy</DisplayName>
+    <Description>
+      CWash instrument is busy serving another SiLA client (e.g. performing an execution task).
+    </Description>
+  </DefinedExecutionError>
+</Feature>

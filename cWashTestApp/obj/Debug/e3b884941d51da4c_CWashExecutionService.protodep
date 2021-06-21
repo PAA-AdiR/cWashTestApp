@@ -1,0 +1,3 @@
+obj\Debug/CWashExecutionService.cs \
+obj\Debug/CWashExecutionServiceGrpc.cs: C:/Users/adi_rai/.nuget/packages/sila2.tools/0.4.0/build/../protobuf/SiLAFramework.proto\
+ obj/Debug/CWashExecutionService.proto
