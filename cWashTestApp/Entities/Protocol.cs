@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Cytena.CWash.ClientExample.Entities
+namespace cWashTestApp.Entities
 {
     /// <summary>
     /// Protocol object that is sent to the CWash server for execution.

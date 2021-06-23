@@ -1,8 +1,8 @@
-﻿using Cytena.CWash.ClientExample.Entities;
+﻿using cWashTestApp.Entities;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Cytena.CWash.ClientExample.Helpers
+namespace cWashTestApp.Helpers
 {
     public static class Serializers
     {

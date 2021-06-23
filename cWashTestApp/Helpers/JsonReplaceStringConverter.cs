@@ -3,7 +3,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace Cytena.CWash.ClientExample.Helpers
+namespace cWashTestApp.Helpers
 {
     public class JsonReplaceStringConverter : JsonConverter<string>
     {

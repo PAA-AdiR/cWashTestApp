@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace Cytena.CWash.ClientExample.Entities
+namespace cWashTestApp.Entities
 {
     /// <summary>
     /// Type of the Command object. Action type Commands are translated into a set of commands on the server before execution.

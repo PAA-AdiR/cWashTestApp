@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace Cytena.CWash.ClientExample.Entities
+namespace cWashTestApp.Entities
 {
     /// <summary>
     /// Command object that is sent to the CWash server for execution.
@@ -16,7 +16,7 @@ namespace Cytena.CWash.ClientExample.Entities
         public string Name { get; set; }
 
         [Newtonsoft.Json.JsonConverter(typeof(JsonStringEnumConverter))]
-        public CommandType Type { get; set; }
+        public string Type { get; set; }
         
         /// <summary>
         /// List of command parameters.
@@ -25,8 +25,8 @@ namespace Cytena.CWash.ClientExample.Entities
 
         public Command()
         {
-            //Parameters = new List<string>();
-            //Type = CommandType.Command;
+            Parameters = new List<string>();
+            Type = "command";
         }
     }
 }

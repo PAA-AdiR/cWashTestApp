@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Cytena.CWash.ClientExample.Entities
+namespace cWashTestApp.Entities
 {
     /// <summary>
     /// Format of the plate in number of wells.

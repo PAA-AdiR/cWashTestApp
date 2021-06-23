@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Cytena.CWash.ClientExample.Entities;
-using Cytena.CWash.ClientExample.Helpers;
+using cWashTestApp.Entities;
+using cWashTestApp.Helpers;
 using Google.Protobuf;
 using Grpc.Core;
 using Sila2.Cytena.Cwash.Features.Cwashexecutionservice.V1;
@@ -12,7 +12,7 @@ using Sila2.Org.Silastandard.Core.Silaservice.V1;
 using Sila2.Server;
 using Sila2.Utils;
 
-namespace Cytena.CWash.ClientExample
+namespace cWashTestApp
 {
     /// <summary>
     /// SiLA 2 client that can connect to the CWash SiLA 2 server and call its SiLA features.
@@ -144,7 +144,7 @@ namespace Cytena.CWash.ClientExample
 
                 // Check if any exceptions occurred on server, exception will be thrown in that case
                 await _executionServiceClient.ExecuteProtocol_ResultAsync(response.CommandExecutionUUID);
-                //responseStream.Dispose();
+                //todo responseStream.Dispose();
 
                 return status;
             }
